@@ -1,0 +1,9 @@
+.venv/
+*.env
+__pycache__/
+.adk/
+.data/
+*.ipynb
+*.csv
+*.sol
+optimization_agent/test.py
