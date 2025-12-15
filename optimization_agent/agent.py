@@ -2,15 +2,10 @@ from google.genai import types
 from google.adk.sessions import InMemorySessionService
 from google.adk.models.lite_llm import LiteLlm
 
-from google.adk.agents import LlmAgent, SequentialAgent, ParallelAgent, LoopAgent
-from google.adk.code_executors import BuiltInCodeExecutor
+from google.adk.agents import LlmAgent, SequentialAgent
 from google.adk.models.google_llm import Gemini
-from google.adk.runners import InMemoryRunner
-# from google.adk.sessions import InMemorySessionService
-from google.adk.tools import AgentTool
 import gurobipy as gp
 from google.adk.sessions import InMemorySessionService
-from google.adk.code_executors.agent_engine_sandbox_code_executor import AgentEngineSandboxCodeExecutor
 
 
 from rich import print
@@ -21,10 +16,6 @@ from pathlib import Path
 load_dotenv() 
 
 session_service = InMemorySessionService()
-
-APP_NAME = "default"  # Application
-USER_ID = "default"  # User
-SESSION = "default"  # Session
 
 
 
@@ -59,7 +50,6 @@ def code_executor_function(code):
     namespace = {}
     try:
         exec(code, namespace, namespace)
-        print(f"Execution completed successfully.\n****\n Result:\n{namespace.get("result")}")
         return(f"Execution completed successfully.\n****\n Result:\n{namespace.get("result")}")
     except Exception as e:
         return f"Error during code execution: {e}"
